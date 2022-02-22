@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 class BranchCoverage {
-	private static Map<Branch, Integer> visitCount = new HashMap<Branch, Integer>();
+	private static SortedMap<Branch, Integer> visitCount = new TreeMap<>();
 	private static List<Path> paths = new ArrayList<>();
 
 	static void incrementCount(Branch id) {
