@@ -6,6 +6,16 @@ import static com.thealgorithms.datastructures.stacks.BalancedBrackets.isBalance
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BalancedBracketsTest {
+	@AfterAll
+	static void printResults() {
+		System.out.println(BranchCoverage.getResults());
+	}
+
+	@BeforeEach
+	void before(TestInfo testInfo) {
+		BranchCoverage.startNewPath(testInfo.getDisplayName());
+	}
+
 	@Test
 	void emptyString() {
 		assertTrue(isBalanced(""));
