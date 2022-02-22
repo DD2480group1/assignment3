@@ -80,7 +80,7 @@ public class Gaussian {
             System.out.print("x" + i + "=" + x[i][i]);
             System.out.println(" ");
         }
-        for(int k=0; k<intArray.length;k++){g
+        for(int k=0; k<intArray.length;k++){
             System.out.println(k+": "+ intArray[k]);
         }
     }
