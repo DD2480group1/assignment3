@@ -1,9 +1,6 @@
 package com.thealgorithms.datastructures.stacks;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class BranchCoverage {
@@ -36,13 +33,14 @@ class BranchCoverage {
 		paths.add(new Path(name));
 	}
 
-	static int visitCount(String id) {
+	static int visitCount(Branch id) {
 		return visitCount.getOrDefault(id, 0);
 	}
 
 	static String getResults() {
 		return visitCountString() + "\n\n" +
-				pathsString();
+				pathsString() + "\n\n" +
+				visitedByString();
 	}
 
 	private static String visitCountString() {
@@ -54,10 +52,35 @@ class BranchCoverage {
 				paths.stream().map(Record::toString).collect(Collectors.joining("\n\t"));
 	}
 
+	public static Map<String, Integer> visitedBy(Branch b) {
+		SortedMap<String, Integer> visits = new TreeMap<>();
+		paths.forEach(path -> {
+			path.path.forEach(step -> {
+				if (step.equals(b)) {
+					int count = visits.getOrDefault(path.name, 0) + 1;
+					visits.put(path.name, count);
+				}
+			});
+		});
+
+		return visits;
+	}
+
+	public static String visitedByString() {
+		StringBuilder s = new StringBuilder("Visits for each branch:");
+		for (Branch b : Branch.values()) {
+			s.append("\n\t" + b +
+					"\t\t count: " + visitCount(b) +
+					",\t\tvisits: " + visitedBy(b));
+		}
+
+		return s.toString();
+	}
+
 
 	public enum Branch {
 		L55, L57, L59, L60,	L61, L62, L63, L66,
-		L67, L68, L69_1, L69_2, L71, L72, L73, L77;
+		L67, L68, L69_1, L69_2, L71, L73, L77;
 	}
 
 	public record Path(String name, List<Branch> path) {
