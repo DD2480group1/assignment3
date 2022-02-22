@@ -26,6 +26,12 @@ class LongestCommonSubsequence {
             checks[2] = true;
             lcsMatrix[i][0] = 0;
         }
+
+        lcsMatrix = handleMatrix(lcsMatrix, arr1, arr2, checks);
+        return lcsString(str1, str2, lcsMatrix);
+    }
+
+    public static int[][] handleMatrix(int[][] lcsMatrix, String[] arr1, String[] arr2, boolean[] checks){
         for (int j = 1; j < arr2.length + 1; j++) {
             checks[3] = true;
             lcsMatrix[0][j] = 0;
@@ -44,7 +50,7 @@ class LongestCommonSubsequence {
                 }
             }
         }
-        return lcsString(str1, str2, lcsMatrix);
+        return lcsMatrix;
     }
 
     public static String lcsString(String str1, String str2, int[][] lcsMatrix) {
