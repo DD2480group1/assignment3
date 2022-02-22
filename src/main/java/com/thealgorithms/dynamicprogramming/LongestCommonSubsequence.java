@@ -22,20 +22,25 @@ class LongestCommonSubsequence {
         // lcsMatrix[i][j]  = LCS of first i elements of arr1 and first j characters of arr2
         int[][] lcsMatrix = new int[arr1.length + 1][arr2.length + 1];
 
+        lcsMatrix = handleMatrixInit(lcsMatrix, arr1, arr2, checks);
+        lcsMatrix = handleMatrix(lcsMatrix, arr1, arr2, checks);
+
+        return lcsString(str1, str2, lcsMatrix);
+    }
+
+    public static int[][] handleMatrixInit(int[][] lcsMatrix, String[] arr1, String[] arr2, boolean[] checks){
         for (int i = 0; i < arr1.length + 1; i++) {
             checks[2] = true;
             lcsMatrix[i][0] = 0;
         }
-
-        lcsMatrix = handleMatrix(lcsMatrix, arr1, arr2, checks);
-        return lcsString(str1, str2, lcsMatrix);
-    }
-
-    public static int[][] handleMatrix(int[][] lcsMatrix, String[] arr1, String[] arr2, boolean[] checks){
         for (int j = 1; j < arr2.length + 1; j++) {
             checks[3] = true;
             lcsMatrix[0][j] = 0;
         }
+        return lcsMatrix;
+    }
+
+    public static int[][] handleMatrix(int[][] lcsMatrix, String[] arr1, String[] arr2, boolean[] checks){
         for (int i = 1; i < arr1.length + 1; i++) {
             checks[4] = true;
             for (int j = 1; j < arr2.length + 1; j++) {
