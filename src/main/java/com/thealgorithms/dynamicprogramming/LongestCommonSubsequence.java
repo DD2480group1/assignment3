@@ -72,6 +72,17 @@ class LongestCommonSubsequence {
         double percentage = coverage/8.0 * 100.0;
         System.out.println("Coverage is: "+ percentage);
     }
+    // Added "testing" for when Strings are null and when one String is empty.
+    public static void increaseTestCoverage(boolean[] checking){
+        String str1 = null;
+        String str2 = null;
+
+        String lcs = getLCS(str1, str2, checking);
+        str1 = "";
+        str2 = "AAA";
+
+        lcs = getLCS(str1, str2, checking);
+    }
 
     public static void main(String[] args) {
         boolean[] checking = new boolean[8];
@@ -82,6 +93,8 @@ class LongestCommonSubsequence {
         String str1 = "DSGSHSRGSRHTRD";
         String str2 = "DATRGAGTSHS";
         String lcs = getLCS(str1, str2, checking);
+
+        increaseTestCoverage(checking);
 
         // Print LCS
         if (lcs != null) {
