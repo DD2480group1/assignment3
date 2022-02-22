@@ -3,6 +3,7 @@ package com.thealgorithms.datastructures.stacks;
 import org.junit.jupiter.api.*;
 
 import static com.thealgorithms.datastructures.stacks.BalancedBrackets.isBalanced;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BalancedBracketsTest {
@@ -26,5 +27,15 @@ public class BalancedBracketsTest {
 		assertTrue(isBalanced("()"));
 		assertTrue(isBalanced("[]"));
 		assertTrue(isBalanced("{}"));
+	}
+
+	@Test
+	void missingOpeningBracket() {
+		assertFalse(isBalanced("[])"));
+	}
+
+	@Test
+	void missingClosingBracket() {
+		assertFalse(isBalanced("([]"));
 	}
 }
