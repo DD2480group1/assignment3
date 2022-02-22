@@ -2,6 +2,8 @@ package com.thealgorithms.datastructures.stacks;
 
 import java.util.Stack;
 
+import static com.thealgorithms.datastructures.stacks.BranchCoverage.*;
+
 /**
  * The nested brackets problem is a problem that determines if a sequence of
  * brackets are properly nested. A sequence of brackets s is considered properly
@@ -49,34 +51,40 @@ class BalancedBrackets {
      * {@code false}
      */
     public static boolean isBalanced(String brackets) {
-        if (brackets == null) {
+        if (brackets == null) { visit("54");
             throw new IllegalArgumentException("brackets is null");
-        }
+        } visit("56");
         Stack<Character> bracketsStack = new Stack<>();
-        for (char bracket : brackets.toCharArray()) {
+        for (char bracket : brackets.toCharArray()) { visit("58");
             switch (bracket) {
-                case '(':
-                case '[':
-                case '{':
+                case '(': visit("60");
+                case '[': visit("61");
+                case '{': visit("62");
                     bracketsStack.push(bracket);
                     break;
-                case ')':
-                case ']':
-                case '}':
-                    if (bracketsStack.isEmpty() || !isPaired(bracketsStack.pop(), bracket)) {
+                case ')': visit("65");
+                case ']': visit("66");
+                case '}': visit("67");
+                    if (visitIf(bracketsStack.isEmpty(), "68_1") || visitIf(!isPaired(bracketsStack.pop(), bracket), "68_2")) {
                         return false;
-                    }
+                    } visit("70");
                     break;
-                default:
+                default: visit("72");
                     /* other character is invalid */
                     return false;
             }
-        }
+        } visit("76");
         return bracketsStack.isEmpty();
     }
 
     public static void main(String[] args) {
         assert isBalanced("[()]{}{[()()]()}");
         assert !isBalanced("[(])");
+        isBalanced("");
+        BranchCoverage.startNewPath();
+        isBalanced("()");
+        BranchCoverage.startNewPath();
+        isBalanced("{[}");
+        System.out.println(BranchCoverage.getResults());
     }
 }
