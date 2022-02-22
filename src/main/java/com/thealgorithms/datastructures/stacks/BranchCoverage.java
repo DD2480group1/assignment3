@@ -45,6 +45,12 @@ class BranchCoverage {
 	}
 
 	private static String visitCountString() {
+		// Ensure that every branch is shown even if it has not been visited.
+		for (Branch b: Branch.values()) {
+			if (!visitCount.containsKey(b)) {
+				visitCount.put(b, 0);
+			}
+		}
 		return "Visit counts:\n" + visitCount;
 	}
 
