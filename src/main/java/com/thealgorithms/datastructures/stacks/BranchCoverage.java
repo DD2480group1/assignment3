@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 class BranchCoverage {
 	private static Map<Branch, Integer> visitCount = new HashMap<Branch, Integer>();
-	private static List<List<Branch>> paths = new ArrayList<>();
+	private static List<Path> paths = new ArrayList<>();
 
 	static void incrementCount(Branch id) {
 		int count = visitCount.getOrDefault(id, 0) + 1;
@@ -15,9 +16,8 @@ class BranchCoverage {
 	}
 
 	static void appendPath(Branch id) {
-		if (paths.isEmpty()) { paths.add(new ArrayList<>()); }
-		List<Branch> last = paths.get(paths.size()-1);
-		last.add(id);
+		Path last = paths.get(paths.size()-1);
+		last.path.add(id);
 	}
 
 	static void visit(Branch id) {
@@ -32,8 +32,8 @@ class BranchCoverage {
 		return b;
 	}
 
-	static void startNewPath() {
-		paths.add(new ArrayList<>());
+	static void startNewPath(String name) {
+		paths.add(new Path(name));
 	}
 
 	static int visitCount(String id) {
@@ -41,15 +41,28 @@ class BranchCoverage {
 	}
 
 	static String getResults() {
-		return "Visit counts:\n" +
-				visitCount.toString() + "\n\n" +
-				"Paths:\n" +
-				paths.toString();
+		return visitCountString() + "\n\n" +
+				pathsString();
+	}
+
+	private static String visitCountString() {
+		return "Visit counts:\n" + visitCount;
+	}
+
+	private static String pathsString() {
+		return "Paths: \n\t" +
+				paths.stream().map(Record::toString).collect(Collectors.joining("\n\t"));
 	}
 
 
 	public enum Branch {
 		L55, L57, L59, L60,	L61, L62, L63, L66,
 		L67, L68, L69_1, L69_2, L71, L72, L73, L76;
+	}
+
+	public record Path(String name, List<Branch> path) {
+		public Path(String name) {
+			this(name, new ArrayList<>());
+		}
 	}
 }

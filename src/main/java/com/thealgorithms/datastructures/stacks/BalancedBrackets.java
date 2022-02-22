@@ -81,10 +81,11 @@ class BalancedBrackets {
     public static void main(String[] args) {
         assert isBalanced("[()]{}{[()()]()}");
         assert !isBalanced("[(])");
+        BranchCoverage.startNewPath("Empty string");
         isBalanced("");
-        BranchCoverage.startNewPath();
+        BranchCoverage.startNewPath("Single parenthesis");
         isBalanced("()");
-        BranchCoverage.startNewPath();
+        BranchCoverage.startNewPath("Missing closing parenthesis");
         isBalanced("{[}");
         System.out.println(BranchCoverage.getResults());
     }
