@@ -74,7 +74,7 @@ class BalancedBrackets {
                     /* other character is invalid */
                     return false;
             }
-        } visit(L76);
+        } visit(L77);
         return bracketsStack.isEmpty();
     }
 

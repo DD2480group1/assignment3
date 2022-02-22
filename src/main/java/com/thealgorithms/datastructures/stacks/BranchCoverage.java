@@ -57,7 +57,7 @@ class BranchCoverage {
 
 	public enum Branch {
 		L55, L57, L59, L60,	L61, L62, L63, L66,
-		L67, L68, L69_1, L69_2, L71, L72, L73, L76;
+		L67, L68, L69_1, L69_2, L71, L72, L73, L77;
 	}
 
 	public record Path(String name, List<Branch> path) {
