@@ -49,4 +49,14 @@ public class BalancedBracketsTest {
 	void nonBracketCharacter() {
 		assertFalse(isBalanced("(a)"));
 	}
+
+	@Test
+	void deeplyNested() {
+		assertTrue(isBalanced("({[[]]})"));
+	}
+
+	@Test
+	void subsequentBrackets() {
+		assertTrue(isBalanced("()[]{}"));
+	}
 }
