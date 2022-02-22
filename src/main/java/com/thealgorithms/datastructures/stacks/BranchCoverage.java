@@ -13,6 +13,7 @@ class BranchCoverage {
 	}
 
 	static void appendPath(Branch id) {
+		if (paths.isEmpty()) { paths.add(new Path("")); }
 		Path last = paths.get(paths.size()-1);
 		last.path.add(id);
 	}
