@@ -28,6 +28,16 @@ public class MinimumSumPartition {
         }
 
         // fill dp array
+        dp = fillDB(dp, n, sum, arr);
+
+        // fill the index array
+        int[] index = fillIndexArray(sum, dp, n);
+
+
+        return getMin(index, sum);
+    }
+
+    public static boolean[][] fillDB(boolean[][] dp, int n, int sum, int[] arr){
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= sum; j++) {
                 if (arr[i - 1] < j) {
@@ -39,8 +49,10 @@ public class MinimumSumPartition {
                 }
             }
         }
+        return dp;
+    }
 
-        // fill the index array
+    public static int[] fillIndexArray(int sum, boolean[][] dp, int n){
         int[] index = new int[sum];
         int p = 0;
         for (int i = 0; i <= sum / 2; i++) {
@@ -48,8 +60,7 @@ public class MinimumSumPartition {
                 index[p++] = i;
             }
         }
-
-        return getMin(index, sum);
+        return index;
     }
 
     /**
