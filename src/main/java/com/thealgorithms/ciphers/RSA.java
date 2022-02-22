@@ -12,6 +12,8 @@ public final class RSA {
     public static void main(String[] args) {
 
         RSA rsa = new RSA(1024);
+        testString("testString", rsa);
+        testBigInteger(rsa);
         String text1 = JOptionPane.showInputDialog("Enter a message to encrypt :");
 
         String ciphertext = rsa.encrypt(text1);
@@ -26,6 +28,18 @@ public final class RSA {
         generateKeys(bits);
     }
 
+    public static void testString(String before, RSA rsa){
+        String encrypted = rsa.encrypt(before);
+        String decrypted = rsa.decrypt(encrypted);
+        System.out.println("Before String is : " + before + "and the String after is: " + decrypted);
+    }
+
+    public static void testBigInteger(RSA rsa){
+        BigInteger bigInteger = BigInteger.valueOf(10050);
+        BigInteger encrypted = rsa.encrypt(bigInteger);
+        BigInteger decrypted = rsa.decrypt(encrypted);
+        System.out.println("The before value of the BigInteger is: " + bigInteger + " the after value is: " + decrypted);
+    }
     /**
      * @return encrypted message
      */
