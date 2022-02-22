@@ -3,6 +3,7 @@ package com.thealgorithms.datastructures.stacks;
 import java.util.Stack;
 
 import static com.thealgorithms.datastructures.stacks.BranchCoverage.*;
+import static com.thealgorithms.datastructures.stacks.BranchCoverage.Branch.*;
 
 /**
  * The nested brackets problem is a problem that determines if a sequence of
@@ -51,29 +52,29 @@ class BalancedBrackets {
      * {@code false}
      */
     public static boolean isBalanced(String brackets) {
-        if (brackets == null) { visit("54");
+        if (brackets == null) { visit(L55);
             throw new IllegalArgumentException("brackets is null");
-        } visit("56");
+        } visit(L57);
         Stack<Character> bracketsStack = new Stack<>();
-        for (char bracket : brackets.toCharArray()) { visit("58");
+        for (char bracket : brackets.toCharArray()) { visit(L59);
             switch (bracket) {
-                case '(': visit("60");
-                case '[': visit("61");
-                case '{': visit("62");
+                case '(': visit(L61);
+                case '[': visit(L62);
+                case '{': visit(L63);
                     bracketsStack.push(bracket);
                     break;
-                case ')': visit("65");
-                case ']': visit("66");
-                case '}': visit("67");
-                    if (visitIf(bracketsStack.isEmpty(), "68_1") || visitIf(!isPaired(bracketsStack.pop(), bracket), "68_2")) {
+                case ')': visit(L66);
+                case ']': visit(L67);
+                case '}': visit(L68);
+                    if (visitIf(bracketsStack.isEmpty(), L69_1) || visitIf(!isPaired(bracketsStack.pop(), bracket), L69_2)) {
                         return false;
-                    } visit("70");
+                    } visit(L71);
                     break;
-                default: visit("72");
+                default: visit(L73);
                     /* other character is invalid */
                     return false;
             }
-        } visit("76");
+        } visit(L76);
         return bracketsStack.isEmpty();
     }
 
