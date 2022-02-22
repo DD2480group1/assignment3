@@ -3,8 +3,7 @@ package com.thealgorithms.datastructures.stacks;
 import org.junit.jupiter.api.*;
 
 import static com.thealgorithms.datastructures.stacks.BalancedBrackets.isBalanced;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BalancedBracketsTest {
 	@AfterAll
@@ -37,5 +36,17 @@ public class BalancedBracketsTest {
 	@Test
 	void missingClosingBracket() {
 		assertFalse(isBalanced("([]"));
+	}
+
+	@Test
+	void nullInput() {
+		assertThrows(IllegalArgumentException.class,
+				() -> isBalanced(null),
+				"Expected to throw IllegalArgumentException for input null.");
+	}
+
+	@Test
+	void nonBracketCharacter() {
+		assertFalse(isBalanced("(a)"));
 	}
 }
