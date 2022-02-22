@@ -1,24 +1,13 @@
-/**
- * \file
- * \brief [Gaussian elimination
- * method](https://en.wikipedia.org/wiki/Gaussian_elimination)
- * @author [Sachwin Kohli](https://github.com/Sachwin-Kohli)
- */
 package com.thealgorithms.maths;
 
-import java.util.*;
+import java.util.ArrayList;
 
-/**
- * Main function
- */
 public class Gaussian {
 
-    public static void main(String[] args) {
-        int mat_size, i, j, step;
-        Scanner sc = new Scanner(System.in);
+    public static ArrayList<Double> gaussian(int mat_size, ArrayList<Double> matrix){
+        int  i, j, step;
+        ArrayList<Double> answerArray = new ArrayList<Double>();
 
-        System.out.println("Matrix Size : ");
-        mat_size = sc.nextInt();
 
         double[][] mat = new double[mat_size + 1][mat_size + 1];
         double[][] x = new double[mat_size][mat_size + 1];
@@ -27,7 +16,7 @@ public class Gaussian {
         System.out.println(' ');
         for (i = 0; i < mat_size; i++) {
             for (j = 0; j <= mat_size; j++) {
-                mat[i][j] = sc.nextInt();
+                mat[i][j] = matrix.get(i) ;
             }
         }
 
@@ -67,6 +56,9 @@ public class Gaussian {
             }
             System.out.print("x" + i + "=" + x[i][i]);
             System.out.println(" ");
+            answerArray.add(x[i][j]);
         }
+        return answerArray;
     }
 }
+
