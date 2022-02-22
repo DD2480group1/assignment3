@@ -41,6 +41,14 @@ class BalancedBrackets {
         return false;
     }
 
+    private static boolean isLeftBracket(char bracket) {
+        return bracket == '(' || bracket == '[' || bracket == '{';
+    }
+
+    private static boolean isRightBracket(char bracket) {
+        return bracket == ')' || bracket == ']' || bracket == '}';
+    }
+
     /**
      * Check if {@code brackets} is balanced
      *
@@ -54,22 +62,14 @@ class BalancedBrackets {
         }
         Stack<Character> bracketsStack = new Stack<>();
         for (char bracket : brackets.toCharArray()) {
-            switch (bracket) {
-                case '(':
-                case '[':
-                case '{':
-                    bracketsStack.push(bracket);
-                    break;
-                case ')':
-                case ']':
-                case '}':
-                    if (bracketsStack.isEmpty() || !isPaired(bracketsStack.pop(), bracket)) {
-                        return false;
-                    }
-                    break;
-                default:
-                    /* other character is invalid */
+            if (isLeftBracket(bracket)) {
+                bracketsStack.push(bracket);
+            } else if (isRightBracket(bracket)) {
+                if (bracketsStack.isEmpty() || !isPaired(bracketsStack.pop(), bracket)) {
                     return false;
+                }
+            } else {/* other character is invalid */
+                return false;
             }
         }
         return bracketsStack.isEmpty();
