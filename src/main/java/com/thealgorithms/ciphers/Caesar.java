@@ -104,6 +104,8 @@ public class Caesar {
     }
 
     public static void main(String[] args) {
+        int[] coverage = new int[6];
+
         Scanner input = new Scanner(System.in);
         int shift = 0;
         System.out.println("Please enter the message (Latin Alphabet)");
@@ -113,25 +115,34 @@ public class Caesar {
         char choice =  Character.toUpperCase(input.next().charAt(0));
         switch (choice) {
             case 'E':
+                coverage[0]++;
                 System.out.println("Please enter the shift number");
                 shift = input.nextInt() % 26;
+                coverage[1]++;
                 System.out.println(
                         "ENCODED MESSAGE IS \n" + encode(message, shift)); // send our function to handle
                 break;
             case 'D':
+                coverage[2]++;
                 System.out.println("Please enter the shift number");
                 shift = input.nextInt() % 26;
+                coverage[3]++;
                 System.out.println("DECODED MESSAGE IS \n" + decode(message, shift));
                 break;
             case 'B':
+                coverage[4]++;
                 String[] listOfAllTheAnswers = bruteforce(message);
                 for (int i =0; i<=26; i++) {
                     System.out.println("FOR SHIFT " + String.valueOf(i) + " decoded message is " + listOfAllTheAnswers[i]);
                 }
             default:
+                coverage[5]++;
                 System.out.println("default case");
         }
         
         input.close();
+        for(int k=0; k<coverage.length;k++){
+            System.out.println(k+": "+ coverage[k]);
+        }
     }
 }
