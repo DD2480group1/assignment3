@@ -155,80 +155,10 @@ public class BinaryTree {
         } // Two children
         else if (temp.left != null && temp.right != null) {
             return twoChildren(temp);
-            // Node successor = findSuccessor(temp);
-
-            // // The left tree of temp is made the left tree of the successor
-            // successor.left = temp.left;
-            // successor.left.parent = successor;
-
-            // // If the successor has a right child, the child's grandparent is it's new parent
-            // if (successor.parent != temp) {
-            //     if (successor.right != null) {
-            //         successor.right.parent = successor.parent;
-            //         successor.parent.left = successor.right;
-            //         successor.right = temp.right;
-            //         successor.right.parent = successor;
-            //     } else {
-            //         successor.parent.left = null;
-            //         successor.right = temp.right;
-            //         successor.right.parent = successor;
-            //     }
-            // }
-
-            // if (temp == root) {
-            //     successor.parent = null;
-            //     root = successor;
-            //     return true;
-            // } // If you're not deleting the root
-            // else {
-            //     successor.parent = temp.parent;
-
-            //     // This if/else assigns the new node to be either the left or right child of the parent
-            //     if (temp.parent.data < temp.data) {
-            //         temp.parent.right = successor;
-            //     } else {
-            //         temp.parent.left = successor;
-            //     }
-            //     return true;
             }
         // One child
         else {
             return oneChild (temp);
-            // // If it has a right child
-            // if (temp.right != null) {
-            //     // REPEATED CODE /////////////////////////
-            //     if (temp == root) {
-            //         root = temp.right;
-            //         return true;
-            //     }
-
-            //     temp.right.parent = temp.parent;
-
-            //     // Assigns temp to left or right child
-            //     if (temp.data < temp.parent.data) {
-            //         temp.parent.left = temp.right;
-            //     } else {
-            //         temp.parent.right = temp.right;
-            //     }
-            //     return true;
-            // } // If it has a left child
-            // else {
-            //     // REPEATED CODE /////////////////////////
-            //     if (temp == root) {
-            //         root = temp.left;
-            //         return true;
-            //     }
-
-            //     temp.left.parent = temp.parent;
-
-            //     // Assigns temp to left or right side
-            //     if (temp.data < temp.parent.data) {
-            //         temp.parent.left = temp.left;
-            //     } else {
-            //         temp.parent.right = temp.left;
-            //     }
-            //     return true;
-            // }
         }
     }
 
