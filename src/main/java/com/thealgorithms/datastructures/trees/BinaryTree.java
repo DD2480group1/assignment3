@@ -154,7 +154,51 @@ public class BinaryTree {
             return true;
         } // Two children
         else if (temp.left != null && temp.right != null) {
-            Node successor = findSuccessor(temp);
+            return twoChildren(temp);
+            }
+        // One child
+        else {
+            return oneChild (temp);
+        }
+    }
+
+
+    public Boolean oneChild (Node temp){
+        // If it has a right child
+        if (temp.right != null) {
+            if (temp == root) {
+                root = temp.right;
+                return true;
+            }
+
+            temp.right.parent = temp.parent;
+
+            if (temp.data < temp.parent.data) {
+                temp.parent.left = temp.right;
+            } else {
+                temp.parent.right = temp.right;
+            }
+            return true;
+        } // If it has a left child
+        else {
+            if (temp == root) {
+                root = temp.left;
+                return true;
+            }
+
+            temp.left.parent = temp.parent;
+
+            if (temp.data < temp.parent.data) {
+                temp.parent.left = temp.left;
+            } else {
+                temp.parent.right = temp.left;
+            }
+            return true;
+        }
+    }
+
+    public Boolean twoChildren (Node temp){
+        Node successor = findSuccessor(temp);
 
             // The left tree of temp is made the left tree of the successor
             successor.left = temp.left;
@@ -190,42 +234,6 @@ public class BinaryTree {
                 }
                 return true;
             }
-        } // One child
-        else {
-            // If it has a right child
-            if (temp.right != null) {
-                if (temp == root) {
-                    root = temp.right;
-                    return true;
-                }
-
-                temp.right.parent = temp.parent;
-
-                // Assigns temp to left or right child
-                if (temp.data < temp.parent.data) {
-                    temp.parent.left = temp.right;
-                } else {
-                    temp.parent.right = temp.right;
-                }
-                return true;
-            } // If it has a left child
-            else {
-                if (temp == root) {
-                    root = temp.left;
-                    return true;
-                }
-
-                temp.left.parent = temp.parent;
-
-                // Assigns temp to left or right side
-                if (temp.data < temp.parent.data) {
-                    temp.parent.left = temp.left;
-                } else {
-                    temp.parent.right = temp.left;
-                }
-                return true;
-            }
-        }
     }
 
     /**
