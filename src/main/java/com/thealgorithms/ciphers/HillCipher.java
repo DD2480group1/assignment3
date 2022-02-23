@@ -19,15 +19,9 @@ public class HillCipher {
     static void encrypt(String message) {
         message = message.toUpperCase();
         // Get key matrix
-        System.out.println("Enter key matrix size");
-        int n = in.nextInt();
-        System.out.println("Enter Key/encryptionKey matrix ");
-        int keyMatrix[][] = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                keyMatrix[i][j] = in.nextInt();
-            }
-        }
+        int[][] keyMatrix = readKeyMatrix("Enter Key/encryptionKey matrix ");
+        int n = keyMatrix.length;
+
         //check if det = 0
         if (determinant(keyMatrix, n) % 26 == 0) {
             System.out.println("Invalid key, as determinant = 0. Program Terminated");
@@ -66,18 +60,12 @@ public class HillCipher {
     }
 
     //Following function decrypts a message
+
     static void decrypt(String message) {
         message = message.toUpperCase();
         // Get key matrix
-        System.out.println("Enter key matrix size");
-        int n = in.nextInt();
-        System.out.println("Enter inverseKey/decryptionKey matrix ");
-        int keyMatrix[][] = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                keyMatrix[i][j] = in.nextInt();
-            }
-        }
+        int[][] keyMatrix = readKeyMatrix("Enter inverseKey/decryptionKey matrix ");
+        int n = keyMatrix.length;
         //check if det = 0
         if (determinant(keyMatrix, n) % 26 == 0) {
             System.out.println("Invalid key, as determinant = 0. Program Terminated");
@@ -113,6 +101,21 @@ public class HillCipher {
             }
         }
         System.out.println("Plaintext: " + PlainText);
+    }
+
+    
+    private static int[][] readKeyMatrix(String msg) {
+        System.out.println("Enter key matrix size");
+        int n = in.nextInt();
+        System.out.println(msg);
+        int keyMatrix[][] = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                keyMatrix[i][j] = in.nextInt();
+            }
+        }
+
+        return keyMatrix;
     }
 
     // Determinant calculator
