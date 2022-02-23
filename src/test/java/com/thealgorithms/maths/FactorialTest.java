@@ -14,8 +14,7 @@ public class FactorialTest {
         assertEquals(120, answer);
     }
 
-    // Testing the Exception that function won't return an answer for negative answers
-
+    // Testing the Exception that function won't return an answer for negative number
     @Test
     public void testException1()  {
         assertThrows(IllegalArgumentException.class, new Executable() {
