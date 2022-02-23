@@ -33,15 +33,7 @@ public class HillCipher {
         int cipherMatrix[][] = new int[n][1];
         int j = 0;
         while (j < message.length()) {
-            for (int i = 0; i < n; i++) {
-                if (j >= message.length()) {
-                    messageVector[i][0] = 23;
-                } else {
-                    messageVector[i][0] = (message.charAt(j)) % 65;
-                }
-                System.out.println(messageVector[i][0]);
-                j++;
-            }
+            j = readMessageBlock(message, j, messageVector);
             int x, i;
             for (i = 0; i < n; i++) {
                 cipherMatrix[i][0] = 0;
@@ -77,15 +69,7 @@ public class HillCipher {
         int plainMatrix[][] = new int[n][1];
         int j = 0;
         while (j < message.length()) {
-            for (int i = 0; i < n; i++) {
-                if (j >= message.length()) {
-                    messageVector[i][0] = 23;
-                } else {
-                    messageVector[i][0] = (message.charAt(j)) % 65;
-                }
-                System.out.println(messageVector[i][0]);
-                j++;
-            }
+            j = readMessageBlock(message, j, messageVector);
             int x, i;
             for (i = 0; i < n; i++) {
                 plainMatrix[i][0] = 0;
@@ -103,7 +87,7 @@ public class HillCipher {
         System.out.println("Plaintext: " + PlainText);
     }
 
-    
+
     private static int[][] readKeyMatrix(String msg) {
         System.out.println("Enter key matrix size");
         int n = in.nextInt();
@@ -116,6 +100,28 @@ public class HillCipher {
         }
 
         return keyMatrix;
+    }
+
+    /**
+     *
+     * @param message the message to read from
+     * @param messageIdx the index to start reading from {@code message}
+     * @param messageVector an n x 1 vector to read the message block into
+     * @return the index the last read char + 1
+     */
+    private static int readMessageBlock(String message, int messageIdx, int[][] messageVector) {
+        int n = messageVector.length;
+        for (int i = 0; i < n; i++) {
+            if (messageIdx >= message.length()) {
+                messageVector[i][0] = 23;
+            } else {
+                messageVector[i][0] = (message.charAt(messageIdx)) % 65;
+            }
+            System.out.println(messageVector[i][0]);
+            messageIdx++;
+        }
+
+        return messageIdx;
     }
 
     // Determinant calculator
