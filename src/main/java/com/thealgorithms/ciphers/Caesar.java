@@ -110,23 +110,20 @@ public class Caesar {
         String message = input.nextLine();
         System.out.println(message);
         System.out.println("(E)ncode or (D)ecode or (B)ruteforce?");
-        char choice = input.next().charAt(0);
+        char choice =  Character.toUpperCase(input.next().charAt(0));
         switch (choice) {
             case 'E':
-            case 'e':
                 System.out.println("Please enter the shift number");
                 shift = input.nextInt() % 26;
                 System.out.println(
                         "ENCODED MESSAGE IS \n" + encode(message, shift)); // send our function to handle
                 break;
             case 'D':
-            case 'd':
                 System.out.println("Please enter the shift number");
                 shift = input.nextInt() % 26;
                 System.out.println("DECODED MESSAGE IS \n" + decode(message, shift));
                 break;
             case 'B':
-            case 'b':
                 String[] listOfAllTheAnswers = bruteforce(message);
                 for (int i =0; i<=26; i++) {
                     System.out.println("FOR SHIFT " + String.valueOf(i) + " decoded message is " + listOfAllTheAnswers[i]);
