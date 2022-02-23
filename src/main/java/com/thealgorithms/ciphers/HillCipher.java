@@ -107,7 +107,7 @@ public class HillCipher {
      * @param message the message to read from
      * @param messageIdx the index to start reading from {@code message}
      * @param messageVector an n x 1 vector to read the message block into
-     * @return the index the last read char + 1
+     * @return the index after the last read char
      */
     private static int readMessageBlock(String message, int messageIdx, int[][] messageVector) {
         int n = messageVector.length;
