@@ -134,31 +134,41 @@ public class BinaryTree {
      */
     public boolean remove(int value) {
         // temp is the node to be deleted
+        int[] intArray = new int[];
         Node temp = find(value);
 
         // If the value doesn't exist
         if (temp.data != value) {
+            intArray[0]++;
             return false;
         }
 
         // No children
         if (temp.right == null && temp.left == null) {
             if (temp == root) {
+                intArray[1]++;
                 root = null;
             } // This if/else assigns the new node to be either the left or right child of the parent
             else if (temp.parent.data < temp.data) {
+                intArray[2]++;
                 temp.parent.right = null;
             } else {
+                intArray[3]++;
                 temp.parent.left = null;
             }
             return true;
         } // Two children
         else if (temp.left != null && temp.right != null) {
+            intArray[4]++;
             return twoChildren(temp);
             }
         // One child
         else {
+            intArray[5]++;
             return oneChild (temp);
+        }
+        for(int k=0; k<intArray.length;k++){
+            System.out.println(k+": "+ intArray[k]);
         }
     }
 
